@@ -42,7 +42,10 @@ router.post('/register',checkUsernameAndPassword, checkIfUsernameIsFree, async (
 });
 
 router.post('/login',checkUsernameAndPassword, checkIfUsernameExists, (req, res, next) => {
-  if(bcrypt.compareSync(req.user.password, req.body.username)){
+  console.log('req.body.password', req.body.password)
+  console.log('req.user', req.user.password)
+
+  if(bcrypt.compareSync(req.body.password, req.user.password)){
     const token = Model.tokenBuilder(req.user)
     res.status(200).json({
       message: `welcome, ${req.body.username}`,

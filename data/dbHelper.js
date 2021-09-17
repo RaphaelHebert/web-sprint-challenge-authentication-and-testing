@@ -9,7 +9,6 @@ function findById (id) {
 }
 
 function findByUsername (username) {
-    console.log('username in Helper', username)
     return db('users').where({username: username}).first()
 }
 

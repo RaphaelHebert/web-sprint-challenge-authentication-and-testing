@@ -23,9 +23,10 @@ const checkIfUsernameIsFree = async (req, res, next) => {
     }
 } 
 
-const checkIfUsernameExists = (req, res, next) => {
+const checkIfUsernameExists = async (req, res, next) => {
     const { username } = req.body
-    const user = Helper.findByUsername(username)
+    const user = await Helper.findByUsername(username)
+    console.log('user', user)
     if(user){
         req.user = user
         next()
